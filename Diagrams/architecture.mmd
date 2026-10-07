@@ -1,0 +1,5 @@
+flowchart TD
+  A["HTML, CSS and JavaScript"] -->|"Fetch / HTTP JSON"| B["Spring Boot REST controller"]
+  B --> C["Service: rules and transactions"]
+  C --> D["Spring Data JPA repository"]
+  D --> E[("MySQL database")]

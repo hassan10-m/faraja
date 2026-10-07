@@ -1,0 +1,10 @@
+flowchart TD
+  A["Register patient"] --> B["Start visit / queue"]
+  B --> C["Record vitals and consultation"]
+  C --> D{"Laboratory test needed?"}
+  D -->|Yes| E["Order test and record result"]
+  D -->|No| F["Prescription when needed"]
+  E --> F
+  F --> G["Dispense; reduce stock"]
+  G --> H["Create invoice and collect payment"]
+  H --> I["Review patient history"]

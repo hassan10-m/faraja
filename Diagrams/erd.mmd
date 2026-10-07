@@ -1,0 +1,53 @@
+erDiagram
+  patients ||--o{ appointments : books
+  patients ||--o{ visits : attends
+  users o|--o{ appointments : doctor
+  users o|--o{ visits : clinician
+  appointments o|--o| visits : starts
+  visits ||--o{ lab_orders : requests
+  visits ||--o{ prescriptions : contains
+  medicines ||--o{ prescriptions : referenced_by
+  visits ||--o| invoices : billed_by
+  invoices ||--o{ payments : receives
+  patients { bigint id PK
+    varchar number UK
+    varchar full_name
+  }
+  users { bigint id PK
+    varchar username UK
+    varchar role
+  }
+  appointments { bigint id PK
+    bigint patient_id FK
+    bigint doctor_id FK
+  }
+  visits { bigint id PK
+    bigint patient_id FK
+    bigint clinician_id FK
+    bigint appointment_id FK,UK
+  }
+  lab_orders { bigint id PK
+    bigint visit_id FK
+    varchar status
+  }
+  medicines { bigint id PK
+    varchar name UK
+    int stock
+  }
+  prescriptions { bigint id PK
+    bigint visit_id FK
+    bigint medicine_id FK
+  }
+  invoices { bigint id PK
+    bigint visit_id FK,UK
+    decimal amount
+  }
+  payments { bigint id PK
+    bigint invoice_id FK
+    decimal amount
+  }
+  audit_logs { bigint id PK
+    varchar actor
+    varchar action
+    varchar target
+  }

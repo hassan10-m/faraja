@@ -1,0 +1,15 @@
+sequenceDiagram
+  participant U as Receptionist
+  participant F as Browser
+  participant A as REST API
+  participant S as Service
+  participant D as MySQL
+  U->>F: Submit patient form
+  F->>A: POST /api/patients + JSON + CSRF
+  A->>A: Authorize and validate
+  A->>S: Register patient
+  S->>D: Save through JPA repository
+  D-->>S: Patient ID
+  S-->>A: Saved patient
+  A-->>F: JSON response
+  F-->>U: Show saved record
